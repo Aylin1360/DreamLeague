@@ -18,19 +18,33 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextViewResult;
+    private TextView mTextViewResult2;
+
+    Button buttonParse;
+
     private RequestQueue mQueue;
+    ArrayList<Player> players = new ArrayList<Player>();
+
+    String name;
+    int jersey;
+    String position;
+    int rating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextViewResult = findViewById(R.id.text_view_result);
-        Button buttonParse = findViewById(R.id.button_parse);
+        mTextViewResult = findViewById(R.id.text_view_result);      //Team one
+        mTextViewResult2 = findViewById(R.id.text_view_result2);    //Team two
+
+        buttonParse = findViewById(R.id.button_parse);
 
         mQueue = Volley.newRequestQueue(this);
 
@@ -44,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void jsonParse() {
         String url = "https://api.myjson.com/bins/1b9gu0";
+        final Random rand = new Random();
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -51,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray jsonArray = response.getJSONArray("players");
-
+                            //Getting the whole elements of json data.
                             for (int i =0; i< jsonArray.length(); i++){
                                 JSONObject player = jsonArray.getJSONObject(i);
 
@@ -62,14 +77,30 @@ public class MainActivity extends AppCompatActivity {
                                  "rating": 99
                                  */
 
-                                String name = player.getString("name");
-                                int jersey = player.getInt("jerseynumber");
-                                String position = player.getString("position");
-                                int rating = player.getInt("rating");
-
-                                mTextViewResult.append(name + " " + String.valueOf(jersey) + " " +
-                                        position + " " + String.valueOf(rating) + "\n\n");
+                                name = player.getString("name");
+                                jersey = player.getInt("jerseynumber");
+                                position = player.getString("position");
+                                rating = player.getInt("rating");
+                                //Turn them into objects
+                                Player p = new Player(name, jersey, position, rating);
+                                players.add(p);
                             }
+                            //Creating team one and changing selected players' availability
+                            //to false (removing them from the array list)
+                            for (int a = 0; a<5; a++){
+                                int n = rand.nextInt(players.size());
+                                mTextViewResult.append(players.get(n).toString());
+                                players.remove(n);
+                                buttonParse.setEnabled(false);
+                            }
+
+                            //creating second team.
+                            for (int a = 0; a<5; a++){
+                                int n = rand.nextInt(players.size());
+                                mTextViewResult2.append(players.get(n).toString());
+                                players.remove(n);
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
