@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="15dp"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/appbarId"
+        android:background="@color/colorPrimary">
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        android:id="@+id/tablayout_id"/>
+
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/viewpager_id">
+    </android.support.v4.view.ViewPager>
 
     <TextView
         android:id="@+id/text_view_result"
@@ -15,15 +36,6 @@
         android:textSize="16.5sp"
         android:textColor="@android:color/holo_red_dark"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/text_view_result2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16.5sp"
-        android:textColor="@android:color/holo_blue_bright"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_view_result"/>
 
     <Button
         android:id="@+id/button_parse"
@@ -34,4 +46,5 @@
         android:layout_centerHorizontal="true"
         android:enabled="true"/>
 
-</RelativeLayout>
+
+</LinearLayout>

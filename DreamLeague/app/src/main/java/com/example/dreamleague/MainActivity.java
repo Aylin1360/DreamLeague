@@ -1,5 +1,8 @@
 package com.example.dreamleague;
 
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,16 +15,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.dreamleague.TeamsCol.TeamEight;
+import com.example.dreamleague.TeamsCol.TeamFive;
+import com.example.dreamleague.TeamsCol.TeamFour;
+import com.example.dreamleague.TeamsCol.TeamOne;
+import com.example.dreamleague.TeamsCol.TeamSeven;
+import com.example.dreamleague.TeamsCol.TeamSix;
+import com.example.dreamleague.TeamsCol.TeamThree;
+import com.example.dreamleague.TeamsCol.TeamTwo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+
+    private TabLayout tabLayout;
+    private AppBarLayout appBarLayout;
+    private ViewPager viewPager;
 
     private TextView mTextViewResult;
     private TextView mTextViewResult2;
@@ -35,6 +49,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbarId);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+
+        adapter.AddFragment(new TeamOne(), "Team1");
+        adapter.AddFragment(new TeamTwo(), "Team2");
+        adapter.AddFragment(new TeamThree(), "Team3");
+        adapter.AddFragment(new TeamFour(), "Team4");
+        adapter.AddFragment(new TeamFive(), "Team5");
+        adapter.AddFragment(new TeamSix(), "Team6");
+        adapter.AddFragment(new TeamSeven(), "Team7");
+        adapter.AddFragment(new TeamEight(), "Team8");
+
+        viewPager.setAdapter(adapter);
+        tabLayout.setupWithViewPager(viewPager);
+
         teamsHeap = new Heap(8);
 
         mTextViewResult = findViewById(R.id.text_view_result);      //Team one
