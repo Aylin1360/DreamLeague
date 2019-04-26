@@ -25,21 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextViewResult;
     private TextView mTextViewResult2;
-
+    private Heap teamsHeap;
     Button buttonParse;
 
     private RequestQueue mQueue;
     ArrayList<Player> players = new ArrayList<Player>();
 
-    String name;
-    int jersey;
-    String position;
-    int rating;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        teamsHeap = new Heap(8);
 
         mTextViewResult = findViewById(R.id.text_view_result);      //Team one
         mTextViewResult2 = findViewById(R.id.text_view_result2);    //Team two
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         buttonParse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonParse.setEnabled(false);
                 jsonParse();
             }
         });
@@ -58,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void jsonParse() {
         String url = "https://api.myjson.com/bins/1b9gu0";
-        final Random rand = new Random();
+
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -67,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = response.getJSONArray("players");
                             //Getting the whole elements of json data.
-                            for (int i =0; i< jsonArray.length(); i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject player = jsonArray.getJSONObject(i);
 
                                 /*
@@ -77,28 +74,13 @@ public class MainActivity extends AppCompatActivity {
                                  "rating": 99
                                  */
 
-                                name = player.getString("name");
-                                jersey = player.getInt("jerseynumber");
-                                position = player.getString("position");
-                                rating = player.getInt("rating");
+                                String name = player.getString("name");
+                                int jersey = player.getInt("jerseynumber");
+                                String position = player.getString("position");
+                                int rating = player.getInt("rating");
                                 //Turn them into objects
                                 Player p = new Player(name, jersey, position, rating);
                                 players.add(p);
-                            }
-                            //Creating team one and changing selected players' availability
-                            //to false (removing them from the array list)
-                            for (int a = 0; a<5; a++){
-                                int n = rand.nextInt(players.size());
-                                mTextViewResult.append(players.get(n).toString());
-                                players.remove(n);
-                                buttonParse.setEnabled(false);
-                            }
-
-                            //creating second team.
-                            for (int a = 0; a<5; a++){
-                                int n = rand.nextInt(players.size());
-                                mTextViewResult2.append(players.get(n).toString());
-                                players.remove(n);
                             }
 
                         } catch (JSONException e) {
@@ -113,5 +95,21 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mQueue.add(request);
+    }
+
+    public void createTeam(String name, TextView tv){
+        final Random rand = new Random();
+        Player[] ps = new Player[5];
+        //Creating team one and changing selected players' availability
+        //to false (removing them from the array list)
+        for (int a = 0; a < 5; a++) {
+            int n = rand.nextInt(players.size());
+            //mTextViewResult.append(players.get(n).toString());
+            ps[a] = players.get(n);
+            players.remove(n);
+        }
+        Team t = new Team(name, ps);
+        //Maybe show stuff
+        teamsHeap.push(t);
     }
 }

@@ -1,10 +1,10 @@
 package com.example.dreamleague;
 
 public class Player {
-    String name;
-    int jerseyn;
-    String playerposition;
-    int overallrating;
+    private String name;
+    private int jerseyn;
+    private String playerposition;
+    private int overallrating;
 
     public Player(String name, int jerseyn, String playerposition, int overallrating) {
         this.name = name;
