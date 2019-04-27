@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             Player[] ps = new Player[5];
-                            for (int a = 0; a<5; a++){
+                            for (int a = 0; a < 5; a++) {
                                 int n = rand.nextInt(players.size());
                                 tv.append(players.get(n).toString());
                                 ps[a] = players.get(n);

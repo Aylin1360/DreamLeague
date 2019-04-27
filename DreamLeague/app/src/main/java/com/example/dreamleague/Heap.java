@@ -9,7 +9,7 @@ public class Heap {
     //leftIndex || rightIndex / 2 == parentIndex
     //index 0 is not used
 
-    public String getTop(){
+    public String getTop() {
         return items[1].toString();
     }
 

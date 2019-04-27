@@ -5,34 +5,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/txtInput4"
-        android:layout_gravity="bottom"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:hint="TEAM NAME"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="75dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center"
+        android:hint="TEAM NAME" />
 
     <TextView
         android:id="@+id/text_view_result4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="21sp"
-        android:textColor="@android:color/holo_red_dark"
         android:layout_centerHorizontal="true"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
     <Button
         android:id="@+id/button_parse4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="parse"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
-        android:enabled="true" />
+        android:enabled="true"
+        android:text="parse" />
 
 </LinearLayout>

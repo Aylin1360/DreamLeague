@@ -21,6 +21,7 @@ public class TeamSeven extends Fragment {
     private EditText editText7;
 
     View view;
+
     public TeamSeven() {
     }
 

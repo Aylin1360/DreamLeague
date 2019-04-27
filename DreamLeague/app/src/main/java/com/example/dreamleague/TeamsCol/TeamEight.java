@@ -21,6 +21,7 @@ public class TeamEight extends Fragment {
     private EditText editText8;
 
     View view;
+
     public TeamEight() {
     }
 

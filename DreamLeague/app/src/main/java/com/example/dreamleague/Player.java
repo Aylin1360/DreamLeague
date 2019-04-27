@@ -49,8 +49,8 @@ public class Player {
     public String toString() {
         return
                 name + "\n" +
-                "JN: " + jerseyn +
-                " " + playerposition + " " +
-                "Rate: " + overallrating + "\n\n";
+                        "JN: " + jerseyn +
+                        " " + playerposition + " " +
+                        "Rate: " + overallrating + "\n\n";
     }
 }

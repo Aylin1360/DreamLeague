@@ -21,6 +21,7 @@ public class TeamTwo extends Fragment {
     private EditText editText2;
 
     View view;
+
     public TeamTwo() {
     }
 

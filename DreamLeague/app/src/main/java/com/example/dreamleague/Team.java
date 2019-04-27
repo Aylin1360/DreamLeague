@@ -11,11 +11,11 @@ public class Team {
         calculateOverall();
     }
 
-    private void calculateOverall(){
+    private void calculateOverall() {
         float avg = 0;
         for (int i = 0; i < players.length; i++)
             avg += players[i].getOverallrating();
-        overall = avg/players.length;
+        overall = avg / players.length;
     }
 
     @Override

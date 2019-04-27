@@ -4,22 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".MainActivity"
-    android:padding="120dp">
+    android:background="@drawable/cup"
+    android:padding="90dp"
+    tools:context=".MainActivity">
 
     <Button
         android:id="@+id/button_winner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CHAMPION"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:enabled="true" />
+        android:enabled="true"
+        android:text="CHAMPION" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/button_winner"
         android:gravity="center"
         android:orientation="vertical">
@@ -28,19 +28,21 @@
             android:id="@+id/result1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="21sp"
-            android:textColor="@android:color/black"
             android:layout_centerHorizontal="true"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/champ"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
-            android:textColor="@android:color/holo_red_dark"
             android:layout_centerHorizontal="true"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="30sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>
