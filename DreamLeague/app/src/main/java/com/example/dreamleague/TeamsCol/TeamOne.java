@@ -9,20 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.dreamleague.Heap;
 import com.example.dreamleague.MainActivity;
 import com.example.dreamleague.R;
-
-import java.io.Console;
-
 
 public class TeamOne extends Fragment {
 
     private TextView mTextViewResult1;
-    private TextView mResult1;
     Button buttonParse1;
+    private EditText editText1;
 
     View view;
     public TeamOne() {
@@ -35,16 +32,17 @@ public class TeamOne extends Fragment {
         view = inflater.inflate(R.layout.team1, container, false);
         mTextViewResult1 = view.findViewById(R.id.text_view_result1);
         buttonParse1 = view.findViewById(R.id.button_parse1);
-
-        mResult1 = view.findViewById(R.id.result1);
+        editText1 = view.findViewById(R.id.txtInput1);
 
         buttonParse1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String team_name = editText1.getText().toString();
+
                 buttonParse1.setEnabled(false);
-                MainActivity.jsonParse(mTextViewResult1);
-                Log.d("gfdgdf", MainActivity.teamsHeap.toString());
-                Log.d("Winner", MainActivity.teamsHeap.winner());
+                MainActivity.jsonParse(team_name, mTextViewResult1);
+                //Log.d("gfdgdf", MainActivity.teamsHeap.toString());
+                //Log.d("Winner", team_name);
             }
         });
 

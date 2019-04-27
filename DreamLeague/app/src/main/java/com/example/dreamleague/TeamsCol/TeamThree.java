@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.dreamleague.MainActivity;
@@ -17,6 +18,7 @@ public class TeamThree extends Fragment {
 
     private TextView mTextViewResult3;
     Button buttonParse3;
+    private EditText editText3;
 
     View view;
     public TeamThree() {
@@ -29,12 +31,15 @@ public class TeamThree extends Fragment {
 
         mTextViewResult3 = view.findViewById(R.id.text_view_result3);
         buttonParse3 = view.findViewById(R.id.button_parse3);
+        editText3 = view.findViewById(R.id.txtInput3);
 
         buttonParse3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String team_name3 = editText3.getText().toString();
+
                 buttonParse3.setEnabled(false);
-                MainActivity.jsonParse(mTextViewResult3);
+                MainActivity.jsonParse(team_name3, mTextViewResult3);
             }
         });
 

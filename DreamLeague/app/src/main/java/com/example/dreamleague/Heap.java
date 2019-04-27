@@ -9,8 +9,8 @@ public class Heap {
     //leftIndex || rightIndex / 2 == parentIndex
     //index 0 is not used
 
-    public Team getTop(){
-        return items[1];
+    public String getTop(){
+        return items[1].toString();
     }
 
     public Heap(int size) {
@@ -62,7 +62,8 @@ public class Heap {
     }
 
     public String winner() {
-        String win = "And the winner is: " + items[1];
-        return win;
+        String winner = "";
+        winner = getTop();
+        return winner;
     }
 }

@@ -9,21 +9,19 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <EditText
+        android:id="@+id/txtInput1"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="TEAM NAME"/>
+
     <TextView
         android:id="@+id/text_view_result1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="21sp"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"/>
-
-    <TextView
-        android:id="@+id/result1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="21sp"
-        android:textColor="@android:color/black"
         android:layout_centerHorizontal="true"
         android:textAlignment="center"/>
 

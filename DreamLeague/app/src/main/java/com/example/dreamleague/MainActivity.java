@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -24,6 +25,7 @@ import com.example.dreamleague.TeamsCol.TeamSeven;
 import com.example.dreamleague.TeamsCol.TeamSix;
 import com.example.dreamleague.TeamsCol.TeamThree;
 import com.example.dreamleague.TeamsCol.TeamTwo;
+import com.example.dreamleague.TeamsCol.Winner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,14 +57,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        adapter.AddFragment(new TeamOne(), "Team1");
-        adapter.AddFragment(new TeamTwo(), "Team2");
-        adapter.AddFragment(new TeamThree(), "Team3");
-        adapter.AddFragment(new TeamFour(), "Team4");
-        adapter.AddFragment(new TeamFive(), "Team5");
-        adapter.AddFragment(new TeamSix(), "Team6");
-        adapter.AddFragment(new TeamSeven(), "Team7");
-        adapter.AddFragment(new TeamEight(), "Team8");
+        adapter.AddFragment(new TeamOne(), "T1");
+        adapter.AddFragment(new TeamTwo(), "T2");
+        adapter.AddFragment(new TeamThree(), "T3");
+        adapter.AddFragment(new TeamFour(), "T4");
+        adapter.AddFragment(new TeamFive(), "T5");
+        adapter.AddFragment(new TeamSix(), "T6");
+        adapter.AddFragment(new TeamSeven(), "T7");
+        adapter.AddFragment(new TeamEight(), "T8");
+        adapter.AddFragment(new Winner(), "W");
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(this);
     }
 
-    public static void jsonParse(final TextView tv) {
+    public static void jsonParse(final String tn, final TextView tv) {
         String url = "https://api.myjson.com/bins/1eh1ek";
         final Random rand = new Random();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -111,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                                 ps[a] = players.get(n);
                                 players.remove(n);
                             }
-                            Team t = new Team("a", ps);
+                            Team t = new Team(tn, ps);
                             teamsHeap.push(t);
 
                         } catch (JSONException e) {

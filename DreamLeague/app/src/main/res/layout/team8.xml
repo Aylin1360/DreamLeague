@@ -9,6 +9,13 @@
     android:orientation="vertical"
     android:gravity="center">
 
+    <EditText
+        android:id="@+id/txtInput8"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:hint="TEAM NAME"/>
+
     <TextView
         android:id="@+id/text_view_result8"
         android:layout_width="wrap_content"
