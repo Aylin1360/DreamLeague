@@ -7,10 +7,16 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
+import com.example.dreamleague.MainActivity;
 import com.example.dreamleague.R;
 
 public class TeamEight extends Fragment {
+
+    private TextView mTextViewResult8;
+    Button buttonParse8;
 
     View view;
     public TeamEight() {
@@ -19,7 +25,18 @@ public class TeamEight extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.team6, container, false);
+        view = inflater.inflate(R.layout.team8, container, false);
+
+        mTextViewResult8 = view.findViewById(R.id.text_view_result8);
+        buttonParse8 = view.findViewById(R.id.button_parse8);
+
+        buttonParse8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonParse8.setEnabled(false);
+                MainActivity.jsonParse(mTextViewResult8);
+            }
+        });
         return view;
     }
 }

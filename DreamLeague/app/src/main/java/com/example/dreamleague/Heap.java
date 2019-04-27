@@ -60,4 +60,9 @@ public class Heap {
         }
         return s;
     }
+
+    public String winner() {
+        String win = "And the winner is: " + items[1];
+        return win;
+    }
 }

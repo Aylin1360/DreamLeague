@@ -5,6 +5,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,13 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
 
-    private TextView mTextViewResult;
-    private TextView mTextViewResult2;
-    private Heap teamsHeap;
+    private static TextView mTextViewResult;
+    public static Heap teamsHeap;
     Button buttonParse;
 
-    private RequestQueue mQueue;
-    ArrayList<Player> players = new ArrayList<Player>();
+    private static RequestQueue mQueue;
+    static ArrayList<Player> players = new ArrayList<Player>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,25 +70,14 @@ public class MainActivity extends AppCompatActivity {
         teamsHeap = new Heap(8);
 
         mTextViewResult = findViewById(R.id.text_view_result);      //Team one
-        mTextViewResult2 = findViewById(R.id.text_view_result2);    //Team two
-
         buttonParse = findViewById(R.id.button_parse);
 
         mQueue = Volley.newRequestQueue(this);
-
-        buttonParse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonParse.setEnabled(false);
-                jsonParse();
-            }
-        });
     }
 
-    private void jsonParse() {
-        String url = "https://api.myjson.com/bins/1b9gu0";
-
-
+    public static void jsonParse(final TextView tv) {
+        String url = "https://api.myjson.com/bins/1eh1ek";
+        final Random rand = new Random();
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -115,6 +104,16 @@ public class MainActivity extends AppCompatActivity {
                                 players.add(p);
                             }
 
+                            Player[] ps = new Player[5];
+                            for (int a = 0; a<5; a++){
+                                int n = rand.nextInt(players.size());
+                                tv.append(players.get(n).toString());
+                                ps[a] = players.get(n);
+                                players.remove(n);
+                            }
+                            Team t = new Team("a", ps);
+                            teamsHeap.push(t);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -129,19 +128,19 @@ public class MainActivity extends AppCompatActivity {
         mQueue.add(request);
     }
 
-    public void createTeam(String name, TextView tv){
+    /*
+    public static void createTeam(String name, TextView tv){
         final Random rand = new Random();
         Player[] ps = new Player[5];
         //Creating team one and changing selected players' availability
         //to false (removing them from the array list)
         for (int a = 0; a < 5; a++) {
             int n = rand.nextInt(players.size());
-            //mTextViewResult.append(players.get(n).toString());
+            tv.append(players.get(n).toString());
             ps[a] = players.get(n);
             players.remove(n);
         }
         Team t = new Team(name, ps);
-        //Maybe show stuff
         teamsHeap.push(t);
-    }
+    }*/
 }
