@@ -56,7 +56,7 @@ public class Heap {
     public String toString() {
         String s = "";
         for (int j = 1; j < lastIndex; j++) {
-            s += items[j] + " ";
+            s += items[j] + "\n";
         }
         return s;
     }
